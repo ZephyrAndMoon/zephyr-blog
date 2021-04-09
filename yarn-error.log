@@ -1,0 +1,49 @@
+Arguments: 
+  D:\Program Files\nodejs\node.exe D:\Program Files\nodejs\node_modules\yarn\bin\yarn.js add kan-ban-niang -d
+
+PATH: 
+  D:\xShell\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;node_global;D:\Program Files\Git\cmd;D:\Users\Admin\AppData\Roaming\nvm;D:\Program Files\nodejs;C:\Go\bin;D:\mongodb-win32-x86_64-windows-4.4.1\bin;;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Users\Admin\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\Admin\AppData\Local\Programs\Python\Python38\;C:\Users\Admin\AppData\Local\Microsoft\WindowsApps;D:\Users\Admin\AppData\Local\Programs\Microsoft VS Code\bin;node_global;D:\Users\Admin\AppData\Roaming\nvm;D:\Program Files\nodejs;D:\PyCharm 2020.2\bin;;%GoLand%;C:\Users\Admin\go\bin;D:\mongodb-win32-x86_64-windows-4.4.1\bin;D:\nginx-1.18.0;
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.15.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: http://registry.npm.taobao.org/kan-ban-niang: Not found
+      at Request.params.callback [as _callback] (D:\Users\Admin\AppData\Roaming\nvm\v14.15.0\node_modules\yarn\lib\cli.js:66988:18)
+      at Request.self.callback (D:\Users\Admin\AppData\Roaming\nvm\v14.15.0\node_modules\yarn\lib\cli.js:140662:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (D:\Users\Admin\AppData\Roaming\nvm\v14.15.0\node_modules\yarn\lib\cli.js:141634:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (D:\Users\Admin\AppData\Roaming\nvm\v14.15.0\node_modules\yarn\lib\cli.js:141556:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1327:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "name": "zephyrandmoon",
+    "version": "1.0.0",
+    "author": "zephyr",
+    "scripts": {
+      "dev": "vuepress dev . --open --host \"localhost\"",
+      "build": "vuepress build ."
+    },
+    "devDependencies": {
+      "vuepress": "1.8.2",
+      "vuepress-theme-reco": "1.6.6"
+    },
+    "description": ""
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
