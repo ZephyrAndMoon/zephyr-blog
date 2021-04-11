@@ -72,16 +72,17 @@ module.exports = {
     friendLink: [
       {
         title: "风走了以后",
-        desc: "This is my Weibo account",
-        email: "zephyrandmoon@gmail.com",
+        desc: "This is my Weibo.",
         link: "https://weibo.com/u/3011512391",
+        logo:
+          "https://markdowncun.oss-cn-beijing.aliyuncs.com/20210411003825.png",
       },
       {
         title: "Zephyr's github",
-        desc: "A simple and beautiful vuepress Blog & Doc theme.",
-        avatar:
-          "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
-        link: "https://vuepress-theme-reco.recoluan.com",
+        desc: "This is my github.",
+        link: "https://github.com/ZephyrAndMoon",
+        logo:
+          "https://markdowncun.oss-cn-beijing.aliyuncs.com/20210411003652.png",
       },
     ],
     logo: "/logo.png",
