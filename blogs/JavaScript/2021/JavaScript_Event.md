@@ -1,5 +1,5 @@
 ---
-title: JavaScript事件
+title: JavaScript 事件
 date: 2021-04-01
 tags:
  - JavaScript
