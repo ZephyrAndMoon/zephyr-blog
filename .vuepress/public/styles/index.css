@@ -1,0 +1,29 @@
+ .theme-container.no-sidebar:not(.timeline-wrapper, .categories-wrapper, .tags-wrapper) .navbar,
+ .theme-container.no-sidebar:not(.timeline-wrapper, .categories-wrapper, .tags-wrapper) .navbar .links {
+     background: hsla(0, 0%, 100%, 0) !important;
+ }
+
+ .theme-container.no-sidebar:not(.timeline-wrapper, .categories-wrapper, .tags-wrapper) .navbar {
+     position: absolute !important;
+     color   : #fff !important;
+ }
+
+ .theme-container.no-sidebar:not(.timeline-wrapper, .categories-wrapper, .tags-wrapper) .home-blog .hero {
+     margin: 0 auto !important;
+ }
+
+ .theme-container.no-sidebar:not(.timeline-wrapper, .categories-wrapper, .tags-wrapper) .nav-links a,
+ .theme-container.no-sidebar:not(.timeline-wrapper, .categories-wrapper, .tags-wrapper) .nav-item .iconfont,
+ .theme-container.no-sidebar:not(.timeline-wrapper, .categories-wrapper, .tags-wrapper) .site-name,
+ .theme-container.no-sidebar:not(.timeline-wrapper, .categories-wrapper, .tags-wrapper) .color-picker .color-button .iconfont,
+ .theme-container.no-sidebar:not(.timeline-wrapper, .categories-wrapper, .tags-wrapper) .reco-search {
+     color: white !important;
+ }
+
+ .theme-container.no-sidebar:not(.timeline-wrapper, .categories-wrapper, .tags-wrapper) .search-box input:focus {
+     border: 1px solid #0a4777 !important;
+ }
+
+ .theme-container.no-sidebar:not(.timeline-wrapper, .categories-wrapper, .tags-wrapper) .nav-item .dropdown-item a {
+     color: black !important;
+ }

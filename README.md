@@ -2,7 +2,7 @@
 home: true
 heroText: null
 tagline: Hi there, I'm Zephyr!
-bgImage: '/bg-4.png'
+bgImage: '/taikongnvhai.jpg'
 heroImage: /avatar.png
 heroImageStyle: {
   maxHeight: '200px',

@@ -8,7 +8,14 @@ module.exports = {
       {
         rel: "icon",
         href: "/favicon.ico",
-      },
+      }
+    ],
+    [
+      "link",
+      {
+
+        rel: "stylesheet", href: "/styles/index.css"
+      }
     ],
     [
       "meta",
@@ -20,6 +27,7 @@ module.exports = {
   ],
   theme: "reco",
   themeConfig: {
+
     subSidebar: "auto",
     codeTheme: "tomorrow",
     nav: [
@@ -105,7 +113,7 @@ module.exports = {
         clean: true,
         modelStyle: {
           position: "fixed",
-          right: "100px",
+          right: "200px",
           bottom: "0px",
           opacity: "0.9",
           zIndex: 99999,
