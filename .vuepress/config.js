@@ -11,6 +11,14 @@ module.exports = {
       },
     ],
     [
+      "link",
+      {
+        rel: "stylesheet",
+        href: "/styles/common.css",
+      },
+    ],
+
+    [
       "script",
       {
         src: "/script/index.js",
