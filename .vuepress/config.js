@@ -8,14 +8,13 @@ module.exports = {
       {
         rel: "icon",
         href: "/favicon.ico",
-      }
+      },
     ],
     [
-      "link",
+      "script",
       {
-
-        rel: "stylesheet", href: "/styles/index.css"
-      }
+        src: "/script/index.js",
+      },
     ],
     [
       "meta",
@@ -27,7 +26,6 @@ module.exports = {
   ],
   theme: "reco",
   themeConfig: {
-
     subSidebar: "auto",
     codeTheme: "tomorrow",
     nav: [
