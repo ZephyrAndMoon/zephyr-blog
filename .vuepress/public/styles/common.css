@@ -1,0 +1,5 @@
+/* 博客图片居中 */
+.medium-zoom-image {
+    display: block;
+    margin : 0 auto;
+}
