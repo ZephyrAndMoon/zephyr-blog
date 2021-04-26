@@ -2,19 +2,17 @@
 title: 浏览器工作原理
 date: 2021-04-20
 tags:
- - 基础
- - 前端
-categories: 
- - Front-End-Basics
+  - 基础
+  - 前端
+categories:
+  - Front-End-Basics
 ---
 
-## 1.简介
+## 简介
 
-### 我们要讨论的浏览器
+### 要讨论的浏览器
 
 目前使用的主流浏览器有五个：Internet Explorer、Firefox、Safari、Chrome 浏览器和 Opera。本文中以开放源代码浏览器为例，即 Firefox、Chrome 浏览器和 Safari（部分开源）。根据 [StatCounter 浏览器统计数据](http://gs.statcounter.com/)，目前（2011 年 8 月）Firefox、Safari 和 Chrome 浏览器的总市场占有率将近 60%。由此可见，如今开放源代码浏览器在浏览器市场中占据了非常坚实的部分。
-
-
 
 ### 浏览器的主要功能
 
@@ -33,8 +31,6 @@ categories:
 
 奇怪的是，浏览器的用户界面并没有任何正式的规范，这是多年来的最佳实践自然发展以及彼此之间相互模仿的结果。HTML5 也没有定义浏览器必须具有的用户界面元素，但列出了一些通用的元素，例如地址栏、状态栏和工具栏等。当然，各浏览器也可以有自己独特的功能，比如 Firefox 的下载管理器。
 
-
-
 ### 浏览器的高层结构
 
 浏览器的主要组件为：
@@ -48,28 +44,23 @@ categories:
 7. **数据存储**。这是持久层。浏览器需要在硬盘上保存各种数据，例如 Cookie。新的 HTML 规范 (HTML5) 定义了“网络数据库”，这是一个完整（但是轻便）的浏览器内数据库。
 
 ![](https://markdowncun.oss-cn-beijing.aliyuncs.com/20210419235434.png)
+<center><b>图：浏览器的主要组件</b></center>
 
->  **大多数浏览器不同，Chrome 浏览器的每个标签页都分别对应一个呈现引擎实例。每个标签页都是一个独立的进程。**
+> **大多数浏览器不同，Chrome 浏览器的每个标签页都分别对应一个呈现引擎实例。每个标签页都是一个独立的进程。**
 
+<br>
 
-
-
-
-## 2. 呈现引擎
+## 呈现引擎
 
 呈现引擎的作用是在浏览器的屏幕上显示请求的内容。
 
 默认情况下，呈现引擎可显示 HTML 和 XML 文档与图片。通过插件（或浏览器扩展程序），还可以显示其他类型的内容；例如，使用 PDF 查看器插件就能显示 PDF 文档。但是在本章中，我们将集中介绍其主要用途：显示使用 CSS 格式化的 HTML 内容和图片。
-
-
 
 ### 呈现引擎
 
 本文所讨论的浏览器（Firefox、Chrome 浏览器和 Safari）是基于两种呈现引擎构建的。Firefox 使用的是 Gecko，这是 Mozilla 公司“自制”的呈现引擎。而 Safari 和 Chrome 浏览器使用的都是 WebKit。
 
 WebKit 是一种开放源代码呈现引擎，起初用于 Linux 平台，随后由 Apple 公司进行修改，从而支持苹果机和 Windows。有关详情，请参阅 [webkit.org](http://webkit.org/)。
-
-
 
 ### 主流程
 
@@ -78,16 +69,15 @@ WebKit 是一种开放源代码呈现引擎，起初用于 Linux 平台，随后
 然后进行如下所示的基本流程：
 
 ![](https://markdowncun.oss-cn-beijing.aliyuncs.com/20210420010427.png)
+<center><b>图：呈现引擎的基本流程</b></center>
 
-呈现引擎将开始解析 HTML 文档，并将各标记逐个转化成“内容树”上的DOM节点。同时也会解析外部 CSS 文件以及样式元素中的样式数据。HTML 中这些带有视觉指令的样式信息将用于创建另一个树结构：呈现树。
+呈现引擎将开始解析 HTML 文档，并将各标记逐个转化成“内容树”上的 DOM 节点。同时也会解析外部 CSS 文件以及样式元素中的样式数据。HTML 中这些带有视觉指令的样式信息将用于创建另一个树结构：呈现树。
 
 呈现树包含多个带有视觉属性（如颜色和尺寸）的矩形。这些矩形的排列顺序就是它们将在屏幕上显示的顺序。
 
 呈现树构建完毕之后，进入“[布局](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#layout)”处理阶段，也就是为每个节点分配一个应出现在屏幕上的确切坐标。下一个阶段是[绘制](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#Painting) - 呈现引擎会遍历呈现树，由用户界面后端层将每个节点绘制出来。
 
 需要着重指出的是，这是一个渐进的过程。为达到更好的用户体验，呈现引擎会力求尽快将内容显示在屏幕上。它不必等到整个 HTML 文档解析完毕之后，就会开始构建呈现树和设置布局。在不断接收和处理来自网络的其余内容的同时，呈现引擎会将部分内容解析并显示出来。
-
-
 
 ### 主流程示例
 
@@ -103,13 +93,7 @@ WebKit 是一种开放源代码呈现引擎，起初用于 Linux 平台，随后
 
 Gecko 将视觉格式化元素组成的树称为“框架树”。每个元素都是一个框架。WebKit 使用的术语是“呈现树”，它由“呈现对象”组成。对于元素的放置，WebKit 使用的术语是“布局”，而 Gecko 称之为“重排”。对于连接 DOM 节点和可视化信息从而创建呈现树的过程，WebKit 使用的术语是“附加”。有一个细微的非语义差别，就是 Gecko 在 HTML 与 DOM 树之间还有一个称为“内容槽”的层，用于生成 DOM 元素。下面会逐一论述流程中的每一部分
 
-
-
-
-
 ## 3.解析和 DOM 树构建
-
-
 
 ### 解析 - 综述
 
@@ -117,15 +101,14 @@ Gecko 将视觉格式化元素组成的树称为“框架树”。每个元素�
 
 解析文档是指将文档转化成为有意义的结构，也就是可让代码理解和使用的结构。解析得到的结果通常是代表了文档结构的节点树，它称作解析树或者语法树。
 
-*示例 - 解析 2 + 3 - 1 这个表达式，会返回下面的树：*
+_示例 - 解析 2 + 3 - 1 这个表达式，会返回下面的树：_
 
 ![](https://markdowncun.oss-cn-beijing.aliyuncs.com/20210420210802.png)
+<center><b>图：数学表达式树节点</b></center>
 
 #### 语法
 
 解析是以文档所遵循的语法规则（编写文档所用的语言或格式）为基础的。所有可以解析的格式都必须对应确定的语法（由词汇和语法规则构成）。这称为与上下文无关的语法。人类语言并不属于这样的语言，因此无法用常规的解析技术进行解析。
-
-
 
 #### 解析器和词法分析器的组合
 
@@ -145,8 +128,6 @@ Gecko 将视觉格式化元素组成的树称为“框架树”。每个元素�
 
 如果没有规则可以匹配，解析器就会将标记存储到内部，并继续请求标记，直至找到可与所有内部存储的标记匹配的规则。如果找不到任何匹配规则，解析器就会引发一个异常。这意味着文档无效，包含语法错误。
 
-
-
 #### 翻译
 
 很多时候，解析树还不是最终产品。解析通常是在翻译过程中使用的，而翻译是指将输入文档转换成另一种格式。编译就是这样一个例子。编译器可将源代码编译成机器代码，具体过程是首先将源代码解析成解析树，然后将解析树翻译成机器代码文档。
@@ -154,8 +135,6 @@ Gecko 将视觉格式化元素组成的树称为“框架树”。每个元素�
 ![](https://markdowncun.oss-cn-beijing.aliyuncs.com/20210420221108.png)
 
 <center><b>图：编译流程</b></center>
-
-
 
 #### 解析示例
 
@@ -174,8 +153,6 @@ Gecko 将视觉格式化元素组成的树称为“框架树”。每个元素�
 让我们分析一下 2 + 3 - 1。
 匹配语法规则的第一个子串是 2，而根据第 5 条语法规则，这是一个项。匹配语法规则的第二个子串是 2 + 3，而根据第 3 条规则（一个项接一个运算符，然后再接一个项），这是一个表达式。下一个匹配项已经到了输入的结束。2 + 3 - 1 是一个表达式，因为我们已经知道 2 + 3 是一个项，这样就符合“一个项接一个运算符，然后再接一个项”的规则。2 + + 不与任何规则匹配，因此是无效的输入。
 
-
-
 #### 词汇和语法的正式定义
 
 词汇通常用[正则表达式](http://www.regular-expressions.info/)表示。
@@ -190,8 +167,6 @@ MINUS: -
 
 正如您所看到的，这里用正则表达式给出了整数的定义。
 
-
-
 语法通常使用一种称为 [BNF](http://en.wikipedia.org/wiki/Backus–Naur_Form) 的格式来定义。我们的示例语言可以定义如下：
 
 ```
@@ -200,11 +175,7 @@ operation :=  PLUS | MINUS
 term := INTEGER | expression
 ```
 
-
-
 之前我们说过，如果语言的语法是与上下文无关的语法，就可以由常规解析器进行解析。与上下文无关的语法的直观定义就是可以完全用 BNF 格式表达的语法。有关正式定义，请参阅[关于与上下文无关的语法的维基百科文章](http://en.wikipedia.org/wiki/Context-free_grammar)。
-
-
 
 #### 解析器类型
 
@@ -227,31 +198,21 @@ term := INTEGER | expression
 
 这种自下而上的解析器称为移位归约解析器，因为输入在向右移位（设想有一个指针从输入内容的开头移动到结尾），并且逐渐归约到语法规则上。
 
-
-
 #### 自动生成解析器
 
 有一些工具可以帮助生成解析器，它们称为解析器生成器。您只要向其提供您所用语言的语法（词汇和语法规则），它就会生成相应的解析器。创建解析器需要对解析有深刻理解，而人工创建并优化解析器并不是一件容易的事情，所以解析器生成器是非常实用的。
 
 WebKit 使用了两种非常有名的解析器生成器：用于创建词法分析器的 [Flex](http://en.wikipedia.org/wiki/Flex_lexical_analyser) 以及用于创建解析器的 [Bison](http://www.gnu.org/software/bison/)（您也可能遇到 Lex 和 Yacc 这样的别名）。Flex 的输入是包含标记的正则表达式定义的文件。Bison 的输入是采用 BNF 格式的语言语法规则。
 
-
-
 <br>
 
-
-
-### HTML解析器
+### HTML 解析器
 
 HTML 解析器的任务是将 HTML 标记解析成解析树。
-
-
 
 #### HTML 语法定义
 
 HTML 的词汇和语法在 W3C 组织创建的[规范](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#w3c)中进行了定义。当前的版本是 HTML4，HTML5 正在处理过程中。
-
-
 
 #### 非与上下文无关的语法
 
@@ -267,15 +228,11 @@ HTML 的词汇和语法在 W3C 组织创建的[规范](https://www.html5rocks.co
 
 显然，这种看上去细微的差别实际上却带来了巨大的影响。一方面，这是 HTML 如此流行的原因：它能包容您的错误，简化网络开发。另一方面，这使得它很难编写正式的语法。概括地说，HTML 无法很容易地通过常规解析器解析（因为它的语法不是与上下文无关的语法），也无法通过 XML 解析器来解析。
 
-
-
 #### HTML DTD
 
 HTML 的定义采用了 DTD 格式。此格式可用于定义 [SGML](http://en.wikipedia.org/wiki/Standard_Generalized_Markup_Language) 族的语言。它包括所有允许使用的元素及其属性和层次结构的定义。如上文所述，HTML DTD 无法构成与上下文无关的语法。
 
 DTD 存在一些变体。严格模式完全遵守 HTML 规范，而其他模式可支持以前的浏览器所使用的标记。这样做的目的是确保向下兼容一些早期版本的内容。最新的严格模式 DTD 可以在这里找到：[www.w3.org/TR/html4/strict.dtd](http://www.w3.org/TR/html4/strict.dtd)
-
-
 
 #### DOM
 
@@ -290,7 +247,7 @@ DOM 与标记之间几乎是一一对应的关系。比如下面这段标记：
     <p>
       Hello World
     </p>
-    <div> <img src="example.png"/></div>
+    <div><img src="example.png" /></div>
   </body>
 </html>
 ```
@@ -304,8 +261,6 @@ DOM 与标记之间几乎是一一对应的关系。比如下面这段标记：
 和 HTML 一样，DOM 也是由 W3C 组织指定的。请参见 [www.w3.org/DOM/DOMTR](http://www.w3.org/DOM/DOMTR)。这是关于文档操作的通用规范。其中一个特定模块描述针对 HTML 的元素。HTML 的定义可以在这里找到：[www.w3.org/TR/2003/REC-DOM-Level-2-HTML-20030109/idl-definitions.html](http://www.w3.org/TR/2003/REC-DOM-Level-2-HTML-20030109/idl-definitions.html)。
 
 我所说的树包含 DOM 节点，指的是树是由实现了某个 DOM 接口的元素构成的。浏览器在具体的实现中会有一些供内部使用的其他属性。
-
-
 
 #### 解析算法
 
@@ -328,8 +283,6 @@ DOM 与标记之间几乎是一一对应的关系。比如下面这段标记：
 ![](https://markdowncun.oss-cn-beijing.aliyuncs.com/20210420224747.png)
 
 <center><b>图：HTML 解析流程（摘自 HTML5 规范）</b></center>
-
-
 
 #### 标记化算法
 
@@ -354,8 +307,6 @@ DOM 与标记之间几乎是一一对应的关系。比如下面这段标记：
 ![](https://markdowncun.oss-cn-beijing.aliyuncs.com/20210420224827.png)
 
 <center><b>图：对示例输入进行标记化</b></center>
-
-
 
 #### 树构建算法
 
@@ -385,15 +336,11 @@ DOM 与标记之间几乎是一一对应的关系。比如下面这段标记：
 
 <center><b>图：示例 HTML 的树构建</b></center>
 
-
-
 #### 解析结束后的操作
 
 在此阶段，浏览器会将文档标注为交互状态，并开始解析那些处于“deferred”模式的脚本，也就是那些应在文档解析完成后才执行的脚本。然后，文档状态将设置为“完成”，一个“加载”事件将随之触发。
 
 您可以[在 HTML5 规范中查看标记化和树构建的完整算法](http://www.w3.org/TR/html5/syntax.html#html-parser)
-
-
 
 #### 浏览器的容错机制
 
@@ -446,8 +393,6 @@ if (t->isCloseTag(brTag) && m_document->inCompatMode()) {
 
 请注意，错误处理是在内部进行的，用户并不会看到这个过程。
 
-
-
 ##### 离散表格
 
 离散表格是指位于其他表格内容中，但又不在任何一个单元格内的表格。
@@ -482,8 +427,6 @@ if (m_inStrayTableContent && localName == tableTag)
 
 WebKit 使用一个堆栈来保存当前的元素内容，它会从外部表格的堆栈中弹出内部表格。现在，这两个表格就变成了同级关系。
 
-
-
 ##### 嵌套的表单元素
 
 如果用户在一个表单元素中又放入了另一个表单，那么第二个表单将被忽略。
@@ -494,8 +437,6 @@ if (!m_currentFormElement) {
         m_currentFormElement = new HTMLFormElement(formTag,    m_document);
 }
 ```
-
-
 
 ##### 过于复杂的标记层次结构
 
@@ -515,8 +456,6 @@ return i != cMaxRedundantTagDepth;
 }
 ```
 
-
-
 ##### 放错位置的 html 或者 body 结束标记
 
 同样，代码的注释已经说得很清楚了。
@@ -530,11 +469,7 @@ if (t->tagName == htmlTag || t->tagName == bodyTag )
 
 所以网页作者需要注意，除非您想作为反面教材出现在 WebKit 容错代码段的示例中，否则还请编写格式正确的 HTML 代码。
 
-
-
 <br>
-
-
 
 ### CSS 解析
 
@@ -558,53 +493,37 @@ ident   {nmstart}{nmchar}*
 语法是采用 BNF 格式描述的。
 
 ```css
-ruleset
-  : selector [ ',' S* selector ]*
-    '{' S* declaration [ ';' S* declaration ]* '}' S*
-  ;
-selector
-  : simple_selector [ combinator selector | S+ [ combinator? selector ]? ]?
-  ;
-simple_selector
-  : element_name [ HASH | class | attrib | pseudo ]*
-  | [ HASH | class | attrib | pseudo ]+
-  ;
-class
-  : '.' IDENT
-  ;
-element_name
-  : IDENT | '*'
-  ;
-attrib
-  : '[' S* IDENT S* [ [ '=' | INCLUDES | DASHMATCH ] S*
-    [ IDENT | STRING ] S* ] ']'
-  ;
-pseudo
-  : ':' [ IDENT | FUNCTION S* [IDENT S*] ')' ]
-  ;
+ruleset: selector [ "," S * selector ] * "{" S * declaration [ ";" S *
+  declaration ] * "}" S *;
+selector: simple_selector [ combinator selector | S + [ combinator? selector ]?
+  ]?;
+simple_selector: element_name [ HASH | class | attrib | pseudo ] * | [ HASH |
+  class | attrib | pseudo ] +;
+class: "." IDENT;
+element_name: IDENT | "*";
+attrib: "[" S * IDENT S * [ [ "=" | INCLUDES | DASHMATCH ] S * [ IDENT | STRING
+  ] S * ] "]";
+pseudo: ":" [ IDENT | FUNCTION S * [IDENT S * ] ")" ];
 ```
 
 解释：这是一个规则集的结构：
 
 ```css
-div.error , a.error {
-  color:red;
-  font-weight:bold;
+div.error,
+a.error {
+  color: red;
+  font-weight: bold;
 }
 ```
 
 div.error 和 a.error 是选择器。大括号内的部分包含了由此规则集应用的规则。此结构的正式定义是这样的：
 
 ```css
-ruleset
-  : selector [ ',' S* selector ]*
-    '{' S* declaration [ ';' S* declaration ]* '}' S*
-  ;
+ruleset: selector [ "," S * selector ] * "{" S * declaration [ ";" S *
+  declaration ] * "}" S *;
 ```
 
 这表示一个规则集就是一个选择器，或者由逗号和空格（S 表示空格）分隔的多个（数量可选）选择器。规则集包含了大括号，以及其中的一个或多个（数量可选）由分号分隔的声明。“声明”和“选择器”将由下面的 BNF 格式定义。
-
-
 
 #### WebKit CSS 解析器
 
@@ -613,8 +532,6 @@ WebKit 使用 [Flex 和 Bison](https://www.html5rocks.com/zh/tutorials/internals
 ![](https://markdowncun.oss-cn-beijing.aliyuncs.com/20210420225323.png)
 
 <center><b>图：解析 CSS</b></center>
-
-
 
 ### 处理脚本和样式表的顺序
 
@@ -629,10 +546,6 @@ WebKit 和 Firefox 都进行了这项优化。在执行脚本时，其他线程�
 #### 样式表
 
 另一方面，样式表有着不同的模型。理论上来说，应用样式表不会更改 DOM 树，因此似乎没有必要等待样式表并停止文档解析。但这涉及到一个问题，就是脚本在文档解析阶段会请求样式信息。如果当时还没有加载和解析样式，脚本就会获得错误的回复，这样显然会产生很多问题。这看上去是一个非典型案例，但事实上非常普遍。Firefox 在样式表加载和解析的过程中，会禁止所有脚本。而对于 WebKit 而言，仅当脚本尝试访问的样式属性可能受尚未加载的样式表影响时，它才会禁止该脚本。
-
-
-
-
 
 ## 4.呈现树构建
 
@@ -652,8 +565,6 @@ class RenderObject{
   RenderLayer* containgLayer; //the containing z-index layer
 }
 ```
-
-
 
 每一个呈现器都代表了一个矩形的区域，通常对应于相关节点的 CSS 框，这一点在 CSS2 规范中有所描述。它包含诸如宽度、高度和位置等几何信息。
 框的类型会受到与节点相关的“display”样式属性的影响（请参阅[样式计算](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#style_computation)章节）。下面这段 WebKit 代码描述了根据 display 属性的不同，针对同一个 DOM 节点应创建什么类型的呈现器。
@@ -691,13 +602,9 @@ RenderObject* RenderObject::createObject(Node* node, RenderStyle* style)
 元素类型也是考虑因素之一，例如表单控件和表格都对应特殊的框架。
 在 WebKit 中，如果一个元素需要创建特殊的呈现器，就会替换 `createRenderer` 方法。呈现器所指向的样式对象中包含了一些和几何无关的信息。
 
-
-
 ### 呈现树和 DOM 树的关系
 
 呈现器是和 DOM 元素相对应的，但并非一一对应。非可视化的 DOM 元素不会插入呈现树中，例如“head”元素。如果元素的 display 属性值为“none”，那么也不会显示在呈现树中（但是 visibility 属性值为“hidden”的元素仍会显示）。
-
-
 
 有一些 DOM 元素对应多个可视化对象。它们往往是具有复杂结构的元素，无法用单一的矩形来描述。例如，“select”元素有 3 个呈现器：一个用于显示区域，一个用于下拉列表框，还有一个用于按钮。如果由于宽度不够，文本无法在一行中显示而分为多行，那么新的行也会作为新的呈现器而添加。
 另一个关于多呈现器的例子是格式无效的 HTML。根据 CSS 规范，inline 元素只能包含 block 元素或 inline 元素中的一种。如果出现了混合内容，则应创建匿名的 block 呈现器，以包裹 inline 元素。
@@ -708,8 +615,6 @@ RenderObject* RenderObject::createObject(Node* node, RenderStyle* style)
 
 <center><b>图：呈现树及其对应的 DOM 树。初始容器 block 为“viewport”，而在 WebKit 中则为“RenderView”对象。</b></center>
 
-
-
 ### 构建呈现树的流程
 
 在 Firefox 中，系统会针对 DOM 更新注册展示层，作为侦听器。展示层将框架创建工作委托给 `FrameConstructor`，由该构造器解析样式（请参阅[样式计算](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#style)）并创建框架。
@@ -719,8 +624,6 @@ RenderObject* RenderObject::createObject(Node* node, RenderStyle* style)
 处理 html 和 body 标记就会构建呈现树根节点。这个根节点呈现对象对应于 CSS 规范中所说的容器 block，这是最上层的 block，包含了其他所有 block。它的尺寸就是视口，即浏览器窗口显示区域的尺寸。Firefox 称之为 `ViewPortFrame`，而 WebKit 称之为 `RenderView`。这就是文档所指向的呈现对象。呈现树的其余部分以 DOM 树节点插入的形式来构建。
 
 请参阅[关于处理模型的 CSS2 规范](http://www.w3.org/TR/CSS21/intro.html#processing-model)。
-
-
 
 ### 样式计算
 
@@ -739,18 +642,16 @@ RenderObject* RenderObject::createObject(Node* node, RenderStyle* style)
    例如下面这个组合选择器：
 
    ```css
-   div div div div{
-     ...
+   div div div div {
+     ...;
    }
    ```
 
-   这意味着规则适用于作为 3 个 div 元素的子代的`<div>`。如果您要检查规则是否适用于某个指定的`<div>`元素，应选择树上的一条向上路径进行检查。您可能需要向上遍历节点树，结果发现只有两个div，而且规则并不适用。然后，您必须尝试树中的其他路径。
+   这意味着规则适用于作为 3 个 div 元素的子代的`<div>`。如果您要检查规则是否适用于某个指定的`<div>`元素，应选择树上的一条向上路径进行检查。您可能需要向上遍历节点树，结果发现只有两个 div，而且规则并不适用。然后，您必须尝试树中的其他路径。
 
 3. 应用规则涉及到相当复杂的层叠规则（用于定义这些规则的层次）。
 
 让我们来看看浏览器是如何处理这些问题的：
-
-
 
 #### 共享样式数据
 
@@ -766,8 +667,6 @@ WebKit 节点会引用样式对象 (RenderStyle)。这些对象在某些情况�
 8. 任何元素都不应受属性选择器的影响，这里所说的“影响”是指在选择器中的任何位置有任何使用了属性选择器的选择器匹配
 9. 元素中不能有任何 inline 样式属性
 10. 不能使用任何同级选择器。WebCore 在遇到任何同级选择器时，只会引发一个全局开关，并停用整个文档的样式共享（如果存在）。这包括 + 选择器以及 :first-child 和 :last-child 等选择器。
-
-
 
 #### Firefox 规则树
 
@@ -815,7 +714,7 @@ WebKit 节点会引用样式对象 (RenderStyle)。这些对象在某些情况�
       <p>
         this is a <span class="big"> big error </span>
         this is also a
-        <span class="big"> very  big  error</span> error
+        <span class="big"> very big error</span> error
       </p>
     </div>
     <div class="err" id="div2">another error</div>
@@ -826,7 +725,25 @@ WebKit 节点会引用样式对象 (RenderStyle)。这些对象在某些情况�
 还有如下规则：
 
 ```css
-div {margin:5px;color:black}.err {color:red}.big {margin-top:3px}div span {margin-bottom:4px}#div1 {color:blue}#div2 {color:green}
+div {
+  margin: 5px;
+  color: black;
+}
+.err {
+  color: red;
+}
+.big {
+  margin-top: 3px;
+}
+div span {
+  margin-bottom: 4px;
+}
+#div1 {
+  color: blue;
+}
+#div2 {
+  color: green;
+}
 ```
 
 为了简便起见，我们只需要填充两个结构：color 结构和 margin 结构。color 结构只包含一个成员（即“color”），而 margin 结构包含四条边。
@@ -856,18 +773,18 @@ div {margin:5px;color:black}.err {color:red}.big {margin-top:3px}div span {margi
 例如，如果我们在某个段落中添加 font 规则：
 
 ```css
-p {font-family:Verdana;font size:10px;font-weight:bold}
+p {
+  font-family: Verdana;
+  fontsize: 10px;
+  font-weight: bold;
+}
 ```
 
 那么，该段落元素作为上下文树中的 div 的子代，就会共享与其父代相同的 font 结构（前提是该段落没有指定 font 规则）。
 
-
-
 在 WebKit 中没有规则树，因此会对匹配的声明遍历 4 次。首先应用非重要高优先级的属性（由于作为其他属性的依据而应首先应用的属性，例如 display），接着是高优先级重要规则，然后是普通优先级非重要规则，最后是普通优先级重要规则。这意味着多次出现的属性会根据正确的层叠顺序进行解析。最后出现的最终生效。
 
 因此概括来说，共享样式对象（整个对象或者对象中的部分结构）可以解决问题 [1](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#issue1) 和问题 [3](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#issue3)。Firefox 规则树还有助于按照正确的顺序应用属性。
-
-
 
 #### 对规则进行处理以简化匹配
 
@@ -876,7 +793,9 @@ p {font-family:Verdana;font size:10px;font-weight:bold}
 - 外部样式表或样式元素中的 CSS 规则
 
   ```css
-  p {color:blue}
+  p {
+    color: blue;
+  }
   ```
 
 - inline 样式属性及类似内容
@@ -901,33 +820,37 @@ p {font-family:Verdana;font size:10px;font-weight:bold}
 我们以如下的样式规则为例：
 
 ```css
-p.error {color:red}
-#messageDiv {height:50px}
-div {margin:5px}
+p.error {
+  color: red;
+}
+#messageDiv {
+  height: 50px;
+}
+div {
+  margin: 5px;
+}
 ```
 
 第一条规则将插入类表，第二条将插入 ID 表，而第三条将插入标记表。
 对于下面的 HTML 代码段：
 
 ```html
-<p class="error">an error occurred </p>
+<p class="error">an error occurred</p>
 <div id="messageDiv">this is a message</div>
 ```
-
-
 
 我们首先会为 p 元素寻找匹配的规则。类表中有一个“error”键，在下面可以找到“p.error”的规则。div 元素在 ID 表（键为 ID）和标记表中有相关的规则。剩下的工作就是找出哪些根据键提取的规则是真正匹配的了。
 例如，如果 div 的对应规则如下：
 
 ```css
-table div {margin:5px}
+table div {
+  margin: 5px;
+}
 ```
 
 这条规则仍然会从标记表中提取出来，因为键是最右边的选择器，但这条规则并不匹配我们的 div 元素，因为 div 没有 table 祖先。
 
 WebKit 和 Firefox 都进行了这一处理。
-
-
 
 #### 以正确的层叠顺序应用规则
 
@@ -945,8 +868,6 @@ WebKit 和 Firefox 都进行了这一处理。
 4. 作者重要声明
 5. 用户重要声明
 
-
-
 浏览器声明是重要程度最低的，而用户只有将该声明标记为“重要”才可以替换网页作者的声明。同样顺序的声明会根据[特异性](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#Specificity)进行排序，然后再是其指定顺序。HTML 可视化属性会转换成匹配的 CSS 声明。它们被视为低优先级的网页作者规则。
 
 ##### 特异性
@@ -959,8 +880,6 @@ WebKit 和 Firefox 都进行了这一处理。
 - 记为选择器中元素名称和伪元素的个数 (= d)
 
 将四个数字按 a-b-c-d 这样连接起来（位于大数进制的数字系统中），构成特异性。
-
-
 
 您使用的进制取决于上述类别中的最高计数。
 例如，如果 a=14，您可以使用十六进制。如果 a=17，那么您需要使用十七进制；当然不太可能出现这种情况，除非是存在如下的选择器：html body div div p ...（在选择器中出现了 17 个标记，这样的可能性极低）。
@@ -980,8 +899,6 @@ WebKit 和 Firefox 都进行了这一处理。
  style=""          /* a=1 b=0 c=0 d=0 -> specificity = 1,0,0,0 */
 ```
 
-
-
 ##### 规则排序
 
 找到匹配的规则之后，应根据级联顺序将其排序。WebKit 对于较小的列表会使用冒泡排序，而对较大的列表则使用归并排序。对于以下规则，WebKit 通过替换“>”运算符来实现排序：
@@ -994,8 +911,6 @@ static bool operator >(CSSRuleData& r1, CSSRuleData& r2)
     return (spec1 == spec2) : r1.position() > r2.position() : spec1 > spec2;
 }
 ```
-
-
 
 ### 渐进式处理
 
@@ -1028,8 +943,6 @@ HTML 采用基于流的布局模型，这意味着大多数情况下只要一次
 1. 影响所有呈现器的全局样式更改，例如字体大小更改。
 2. 屏幕大小调整。
 
-
-
 布局可以采用增量方式，也就是只对 dirty 呈现器进行布局（这样可能存在需要进行额外布局的弊端）。
 当呈现器为 dirty 时，会异步触发增量布局。例如，当来自网络的额外内容添加到 DOM 树之后，新的呈现器附加到了呈现树中。
 
@@ -1044,14 +957,10 @@ HTML 采用基于流的布局模型，这意味着大多数情况下只要一次
 全局布局往往是同步触发的。
 有时，当初始布局完成之后，如果一些属性（如滚动位置）发生变化，布局就会作为回调而触发。
 
-
-
 ### 优化
 
 如果布局是由“大小调整”或呈现器的位置（而非大小）改变而触发的，那么可以从缓存中获取呈现器的大小，而无需重新计算。
 在某些情况下，只有一个子树进行了修改，因此无需从根节点开始布局。这适用于在本地进行更改而不影响周围元素的情况，例如在文本字段中插入文本（否则每次键盘输入都将触发从根节点开始的布局）。
-
-
 
 ### 布局处理
 
@@ -1064,12 +973,8 @@ HTML 采用基于流的布局模型，这意味着大多数情况下只要一次
 3. 父呈现器根据子呈现器的累加高度以及边距和补白的高度来设置自身高度，此值也可供父呈现器的父呈现器使用。
 4. 将其 dirty 位设置为 false。
 
-
-
 Firefox 使用“state”对象 (nsHTMLReflowState) 作为布局的参数（称为“reflow”），这其中包括了父呈现器的宽度。
 Firefox 布局的输出为“metrics”对象 (nsHTMLReflowMetrics)，其包含计算得出的呈现器高度。
-
-
 
 ### 宽度计算
 
@@ -1097,21 +1002,11 @@ Firefox 布局的输出为“metrics”对象 (nsHTMLReflowMetrics)，其包含�
 现在计算得出的是“preferred width”。然后需要计算最小宽度和最大宽度。
 如果首选宽度大于最大宽度，那么应使用最大宽度。如果首选宽度小于最小宽度（最小的不可破开单位），那么应使用最小宽度。
 
-
-
 这些值会缓存起来，以用于需要布局而宽度不变的情况。
-
-
 
 ### 换行
 
 如果呈现器在布局过程中需要换行，会立即停止布局，并告知其父代需要换行。父代会创建额外的呈现器，并对其调用布局。
-
-
-
-
-
-
 
 ## 6.绘制
 
@@ -1131,8 +1026,6 @@ Firefox 布局的输出为“metrics”对象 (nsHTMLReflowMetrics)，其包含�
 4. 子代
 5. 轮廓
 
-
-
 ### Firefox 显示列表
 
 Firefox 遍历整个呈现树，为绘制的矩形建立一个显示列表。列表中按照正确的绘制顺序（先是呈现器的背景，然后是边框等等）包含了与矩形相关的呈现器。这样等到重新绘制的时候，只需遍历一次呈现树，而不用多次遍历（绘制所有背景，然后绘制所有图片，再绘制所有边框等等）。
@@ -1143,17 +1036,9 @@ Firefox 对此过程进行了优化，也就是不添加隐藏的元素，例如
 
 在重新绘制之前，WebKit 会将原来的矩形另存为一张位图，然后只绘制新旧矩形之间的差异部分。
 
-
-
-
-
 ## 7.动态变化
 
 在发生变化时，浏览器会尽可能做出最小的响应。因此，元素的颜色改变后，只会对该元素进行重绘。元素的位置改变后，只会对该元素及其子元素（可能还有同级元素）进行布局和重绘。添加 DOM 节点后，会对该节点进行布局和重绘。一些重大变化（例如增大“html”元素的字体）会导致缓存无效，使得整个呈现树都会进行重新布局和绘制。
-
-
-
-
 
 ## 8.呈现引擎的线程
 
@@ -1168,10 +1053,6 @@ Firefox 对此过程进行了优化，也就是不添加隐藏的元素，例如
 while (!mExiting)
     NS_ProcessNextEvent(thread);
 ```
-
-
-
-
 
 ## 9.CSS2 可视化模型
 
@@ -1202,8 +1083,6 @@ none - no box is generated.
 默认值是 inline，但是浏览器样式表设置了其他默认值。例如，“div”元素的 display 属性默认值是 block。
 您可以在这里找到默认样式表示例：[www.w3.org/TR/CSS2/sample.html](http://www.w3.org/TR/CSS2/sample.html)
 
-
-
 ### 定位方案
 
 有三种定位方案：
@@ -1212,17 +1091,12 @@ none - no box is generated.
 2. 浮动：对象先按照普通流进行布局，然后尽可能地向左或向右移动。
 3. 绝对：对象在呈现树中的位置和它在 DOM 树中的位置不同。
 
-
-
 定位方案是由“position”属性和“float”属性设置的。
 
 - 如果值是 static 和 relative，就是普通流
 - 如果值是 absolute 和 fixed，就是绝对定位
 
-
 static 定位无需定义位置，而是使用默认定位。对于其他方案，网页作者需要指定位置：top、bottom、left、right。
-
-
 
 框的布局方式是由以下因素决定的：
 
@@ -1230,8 +1104,6 @@ static 定位无需定义位置，而是使用默认定位。对于其他方案�
 - 框尺寸
 - 定位方案
 - 外部信息，例如图片大小和屏幕大小
-
-
 
 ### 框类型
 
@@ -1258,8 +1130,6 @@ inline 框放置在行中或“行框”中。这些行至少和最高的框一�
 ![](https://markdowncun.oss-cn-beijing.aliyuncs.com/20210420231826.png)
 
 <center><b>图：行</b></center>
-
-
 
 ### 定位
 
@@ -1288,8 +1158,6 @@ inline 框放置在行中或“行框”中。这些行至少和最高的框一�
 
 <center><b>图：浮动</b></center>
 
-
-
 #### 绝对定位和固定定位
 
 这种布局是准确定义的，与普通流无关。元素不参与普通流。尺寸是相对于容器而言的。在固定定位中，容器就是可视区域。
@@ -1299,8 +1167,6 @@ inline 框放置在行中或“行框”中。这些行至少和最高的框一�
 <center><b>图：固定定位</b></center>
 
 请注意，即使在文档滚动时，固定框也不会移动。
-
-
 
 ### 分层展示
 
@@ -1337,8 +1203,6 @@ inline 框放置在行中或“行框”中。这些行至少和最高的框一�
 <center><b>图：固定定位</b></center>
 
 虽然红色 div 在标记中的位置比绿色 div 靠前（按理应该在常规流程中优先绘制），但是 z-index 属性的优先级更高，因此它移动到了根框所保持的堆栈中更靠前的位置。
-
-
 
 ## 10.参考资料
 
