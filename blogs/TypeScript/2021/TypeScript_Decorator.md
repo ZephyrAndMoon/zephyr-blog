@@ -18,11 +18,9 @@ categories:
 
 
 
+<br>
 
-
-## 1. 类装饰器
-
-
+## 类装饰器
 
 ### 执行时机
 
@@ -175,9 +173,9 @@ test.getName()
 
 
 
+<br>
 
-
-## 2. 方法装饰器
+## 方法装饰器
 
 ### 执行时机
 
@@ -193,11 +191,11 @@ test.getName()
 
 
 
-#### target
+#### **target**
 
-**普通方法中的target：**对应的是类的prototype
+**普通方法中的target：** 对应的是类的prototype
 
-**静态方法中的target：**对应的是类的构造函数
+**静态方法中的target：** 对应的是类的构造函数
 
 ```typescript
 function getNameDecorator(target: any, propertyKey: string) {
@@ -229,13 +227,13 @@ const test = new Test('zephyr');
 
 
 
-#### propertykey
+#### **propertykey**
 
 使用该装饰器的方法名
 
 
 
-#### descriptor
+#### **descriptor**
 
 要定义或修改的属性描述符
 
@@ -267,9 +265,9 @@ const test = new Test('zephyr');
 */
 ```
 
+<br>
 
-
-## 3. 访问器装饰器
+## 访问器装饰器
 
 ### 参数
 
@@ -312,9 +310,9 @@ const test = new Test('zephyr');
 */
 ```
 
+<br>
 
-
-## 4. 属性装饰器
+## 属性装饰器
 
 ### 参数
 
@@ -377,9 +375,9 @@ class Test {
 const test = new Test();  
 ```
 
+<br>
 
-
-## 5. 参数装饰器
+## 参数装饰器
 
 ### 参数
 
