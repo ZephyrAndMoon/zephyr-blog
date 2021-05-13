@@ -2,6 +2,7 @@ module.exports = {
   title: "ZephyrAndMoon",
   description: "",
   dest: "public",
+  base: '/',// 设置站点根路径
   head: [
     [
       "link",
@@ -16,13 +17,6 @@ module.exports = {
       {
         rel: "stylesheet",
         href: "/styles/common.css",
-      },
-    ],
-
-    [
-      "script",
-      {
-        src: "/script/index.js",
       },
     ],
     [
