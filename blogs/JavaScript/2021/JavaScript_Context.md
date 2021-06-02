@@ -11,7 +11,7 @@ categories:
 
 ## 什么是执行上下文？
 
-简而言之，执行上下文是评估和执行 JavaScript 代码的环境的抽象概念。每当 Javascript 代码在运行的时候，它都是在执行上下文中运行。
+简而言之，执行上下文是评估和执行 JavaScript 代码的环境的抽象概念。每当 Javascript 代码在运行的时候，它都是在执行上下文中运行。例如当执行到一个函数的时候就会进行准备工作，这里的"准备工作"指的就是"执行上下文"。
 
 
 
@@ -25,9 +25,9 @@ categories:
 
 
 
-## 执行栈
+## 执行上下文栈
 
-执行栈，也就是在其它编程语言中所说的"调用栈"，是一种拥有 LIFO（后进先出）数据结构的栈，被用来存储代码运行时创建的所有执行上下文。
+执行上下文栈，也就是在其它编程语言中所说的"调用栈"，是一种拥有 LIFO（后进先出）数据结构的栈，被用来存储代码运行时创建的所有执行上下文。
 
 当 JavaScript 引擎第一次遇到你的脚本时，它会创建一个全局的执行上下文并且压入当前执行栈。每当引擎遇到一个函数调用，它会为该函数创建一个新的执行上下文并压入栈的顶部。
 
@@ -63,6 +63,68 @@ console.log('Inside Global Execution Context');
 当从 `first()` 函数内部调用 `second()` 函数时，JavaScript 引擎为 `second()` 函数创建了一个新的执行上下文并把它压入当前执行栈的顶部。当 `second()` 函数执行完毕，它的执行上下文会从当前栈弹出，并且控制流程到达下一个执行上下文，即 `first()` 函数的执行上下文。
 
 当 `first()` 执行完毕，它的执行上下文从栈弹出，控制流程到达全局执行上下文。一旦所有代码执行完毕，JavaScript 引擎从当前栈中移除全局执行上下文。
+
+
+
+## 模拟执行上下文的行为
+
+为了模拟执行上下文栈的行为，让我们定义执行上下文栈是一个数组：
+
+```
+ECStack = [];
+```
+
+试想当 JavaScript 开始要解释执行代码的时候，最先遇到的就是全局代码，所以初始化的时候首先就会向执行上下文栈压入一个全局执行上下文，我们用 globalContext 表示它，并且只有当整个应用程序结束的时候，ECStack 才会被清空，所以程序结束之前， ECStack 最底部永远有个 globalContext：
+
+```
+ECStack = [
+    globalContext
+];
+```
+
+现在 JavaScript 遇到下面的这段代码了：
+
+```javascript
+function fun3() {
+    console.log('fun3')
+}
+
+function fun2() {
+    fun3();
+}
+
+function fun1() {
+    fun2();
+}
+
+fun1();
+```
+
+当执行一个函数的时候，就会创建一个执行上下文，并且压入执行上下文栈，当函数执行完毕的时候，就会将函数的执行上下文从栈中弹出。知道了这样的工作原理，让我们来看看如何处理上面这段代码：
+
+```javascript
+// 伪代码
+
+// fun1()
+ECStack.push(<fun1> functionContext);
+
+// fun1中竟然调用了fun2，还要创建fun2的执行上下文
+ECStack.push(<fun2> functionContext);
+
+// 擦，fun2还调用了fun3！
+ECStack.push(<fun3> functionContext);
+
+// fun3执行完毕
+ECStack.pop();
+
+// fun2执行完毕
+ECStack.pop();
+
+// fun1执行完毕
+ECStack.pop();
+
+// javascript接着执行下面的代码，但是ECStack底层永远有个globalContext
+```
 
 
 
@@ -266,4 +328,62 @@ VariableEnvironment: {
 在此阶段，完成对所有这些变量的分配，最后执行代码。
 
 **注意** — 在执行阶段，如果 JavaScript 引擎不能在源码中声明的实际位置找到 `let` 变量的值，它会被赋值为 `undefined`。
+
+
+
+## 解答思考题
+
+```javascript
+var scope = "global scope";
+function checkscope(){
+    var scope = "local scope";
+    function f(){
+        return scope;
+    }
+    return f();
+}
+checkscope();
+```
+
+```javascript
+var scope = "global scope";
+function checkscope(){
+    var scope = "local scope";
+    function f(){
+        return scope;
+    }
+    return f;
+}
+checkscope()();
+```
+
+两段代码执行的结果一样，但是两段代码究竟有哪些不同呢？
+
+答案就是执行上下文栈的变化不一样。
+
+模拟第一段代码：
+
+```
+ECStack.push(<checkscope> functionContext);
+ECStack.push(<f> functionContext);
+ECStack.pop();
+ECStack.pop();
+```
+
+模拟第二段代码：
+
+```
+ECStack.push(<checkscope> functionContext);
+ECStack.pop();
+ECStack.push(<f> functionContext);
+ECStack.pop();
+```
+
+
+
+## 参考
+
+1. [[译] 理解 JavaScript 中的执行上下文和执行栈](https://juejin.cn/post/6844903682283143181)
+
+2. [JavaScript深入之执行上下文栈](https://github.com/mqyqingfeng/Blog/issues/4)
 
