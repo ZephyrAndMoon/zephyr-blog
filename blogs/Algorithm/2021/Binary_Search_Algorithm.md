@@ -19,7 +19,7 @@ let binarySearch = (nums=[], target) => {
     let left = 0, right = ...;
 
     while(...) {
-        let mid = (right + left) / 2;
+        let mid = Math.floor((right + left) / 2);
         if (nums[mid] === target) {
             ...
         } else if (nums[mid] < target) {
@@ -44,7 +44,7 @@ let binarySearch = (nums = [], target) => {
 
   while (left <= right) {
     // 注意
-    let mid = (right + left) / 2;
+    let mid = Math.floor((right + left) / 2);
     if (nums[mid] == target) {
       return mid;
     } else if (nums[mid] < target) {
@@ -121,7 +121,7 @@ let left_bound = (nums = [], target) => {
 
   while (left < right) {
     // 注意
-    let mid = (left + right) / 2;
+    let mid = Math.floor((right + left) / 2);
     if (nums[mid] == target) {
       right = mid;
     } else if (nums[mid] < target) {
@@ -192,7 +192,7 @@ let right_bound = (nums, target) => {
     int left = 0, right = nums.length;
 
     while (left < right) {
-        int mid = (left + right) / 2;
+        int mid =  Math.floor((right + left) / 2);
         if (nums[mid] == target) {
             left = mid + 1; // 注意
         } else if (nums[mid] < target) {
@@ -240,11 +240,11 @@ if (nums[mid] == target) {    left = mid + 1;    // 这样想: mid = left - 1}
 答：类似之前的左侧边界搜索，因为 `while` 的终止条件是 `left == right`，就是说 `left` 的取值范围是 `[0, nums.length]`，所以可以添加两行代码，正确地返回 `-1`：
 
 ```javascript
-while (left < right) {    
-    // ...
+while (left < right) {
+  // ...
 }
 if (left == 0) return -1;
-return nums[left-1] == target ? (left-1) : -1;
+return nums[left - 1] == target ? left - 1 : -1;
 ```
 
 ### 总结
@@ -261,8 +261,6 @@ return nums[left-1] == target ? (left-1) : -1;
 所以当 nums[mid] == target 时可以立即返回
 ```
 
-
-
 **第二个，寻找左侧边界的二分查找：**
 
 ```
@@ -275,8 +273,6 @@ return nums[left-1] == target ? (left-1) : -1;
 所以当 nums[mid] == target 时不要立即返回
 而要收紧右侧边界以锁定左侧边界
 ```
-
-
 
 **第三个，寻找右侧边界的二分查找：**
 
@@ -293,4 +289,3 @@ return nums[left-1] == target ? (left-1) : -1;
 又因为收紧左侧边界时必须 left = mid + 1
 所以最后无论返回 left 还是 right，必须减一
 ```
-
