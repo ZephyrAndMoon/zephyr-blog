@@ -86,6 +86,12 @@ C（服务端）并不知道A（客户端）租了房子，只知道房子租给
 
 
 
+## Centos安装nginx
+
+```
+yum -y install nginx
+```
+
 
 
 
@@ -112,6 +118,97 @@ brew install nginx
 
 主页的文件在 `/usr/local/var/www`  文件夹下
 对应的配置文件地址在 `/usr/local/etc/nginx/nginx.conf`
+
+
+
+## Nginx文件介绍
+
+### 目录结构
+
+```
+├── client_body_temp
+├── conf                             # Nginx所有配置文件的目录
+│   ├── fastcgi.conf                 # fastcgi相关参数的配置文件
+│   ├── fastcgi.conf.default         # fastcgi.conf的原始备份文件
+│   ├── fastcgi_params               # fastcgi的参数文件
+│   ├── fastcgi_params.default       
+│   ├── koi-utf
+│   ├── koi-win
+│   ├── mime.types                   # 媒体类型
+│   ├── mime.types.default
+│   ├── nginx.conf                   # Nginx主配置文件
+│   ├── nginx.conf.default
+│   ├── scgi_params                  # scgi相关参数文件
+│   ├── scgi_params.default  
+│   ├── uwsgi_params                 # uwsgi相关参数文件
+│   ├── uwsgi_params.default
+│   └── win-utf
+├── fastcgi_temp                     # fastcgi临时数据目录
+├── html                             # Nginx默认站点目录
+│   ├── 50x.html                     # 错误页面优雅替代显示文件，例如当出现502错误时会调用此页面
+│   └── index.html                   # 默认的首页文件
+├── logs                             # Nginx日志目录
+│   ├── access.log                   # 访问日志文件
+│   ├── error.log                    # 错误日志文件
+│   └── nginx.pid                    # pid文件，Nginx进程启动后，会把所有进程的ID号写到此文件
+├── proxy_temp                       # 临时目录
+├── sbin                             # Nginx命令目录
+│   └── nginx                        # Nginx的启动命令
+├── scgi_temp                        # 临时目录
+└── uwsgi_temp                       # 临时目录
+```
+
+###　 配置文件
+
+```
+conf          // nginx所有配置文件目录   
+nginx.conf    // 这个是Nginx的核心配置文件，这个文件非常重要，也是我们即将要学习的重点   
+nginx.conf.default //nginx.conf的备份文件  
+```
+
+### 日志
+
+```
+logs: 记录入门的文件，当nginx服务器启动后
+这里面会有 access.log error.log 和nginx.pid三个文件出现。
+```
+
+### 资源目录
+
+```
+html       // 存放nginx自带的两个静态的html页面   
+50x.html   // 访问失败后的失败页面   
+index.html // 成功访问的默认首页 
+```
+
+### 备份文件
+
+```
+fastcgi.conf:fastcgi             // 相关配置文件
+fastcgi.conf.default             // fastcgi.conf的备份文件
+fastcgi_params                   // fastcgi的参数文件
+fastcgi_params.default           // fastcgi的参数备份文件
+scgi_params                      // scgi的参数文件
+scgi_params.default              // scgi的参数备份文件
+uwsgi_params                     // uwsgi的参数文件
+uwsgi_params.default             // uwsgi的参数备份文件
+mime.types                       // 记录的是HTTP协议中的Content-Type的值和文件后缀名的对应关系
+mime.types.default               // mime.types的备份文件
+
+```
+
+### 编码文件
+
+```
+koi-utf、koi-win、win-utf 这三个文件都是与编码转换映射相关的配置文件，
+用来将一种编码转换成另一种编码
+```
+
+### 执行文件
+
+```
+sbin: 是存放执行程序文件nginx
+```
 
 
 
@@ -244,6 +341,39 @@ http {   # 配置使用最频繁的部分，代理、缓存、日志定义等绝
 
 
 
+## 关于location匹配
+
+```
+ #优先级1,精确匹配，根路径
+ location =/ {
+     return 400;
+ }
+
+ #优先级2,以某个字符串开头,以av开头的，优先匹配这里，区分大小写
+ location ^~ /av {
+     root /data/av/;
+ }
+
+ #优先级3，区分大小写的正则匹配，匹配/media*****路径
+ location ~ /media {
+     alias /data/static/;
+ }
+
+ #优先级4 ，不区分大小写的正则匹配，所有的****.jpg|gif|png 都走这里
+ location ~* .*\.(jpg|gif|png|js|css)$ {
+     root  /data/av/;
+ }
+
+ #优先7，通用匹配
+ location / {
+     return 403;
+ }
+```
+
+
+
+
+
 ## 设置二级域名虚拟主机
 
 假设自己有一个二级域名 `music.2ephyr.com` ，则在外网访问 `music.2ephyr.com` 可以访问到服务器
@@ -255,7 +385,7 @@ http {   # 配置使用最频繁的部分，代理、缓存、日志定义等绝
 
 server {
   listen 80;
-	server_name fe.sherlocked93.club;
+	server_name music.2ephyr.com;
 
 	location / {
 		root  /usr/share/nginx/html/fe;
@@ -561,6 +691,7 @@ add_header X-Xss-Protection 1;             # 防XSS攻击
 
 
 ## 常用技巧
+
 ### 静态服务
 
 ```shell
