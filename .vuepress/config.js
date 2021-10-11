@@ -114,7 +114,7 @@ module.exports = {
         clean: true,
         modelStyle: {
           position: "fixed",
-          left: "30px",
+          right: "40px",
           bottom: "0px",
           opacity: "0.9",
           zIndex: 99999,
