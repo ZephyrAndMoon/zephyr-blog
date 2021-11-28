@@ -3,7 +3,7 @@ title: Nginx 基础
 date: 2021-10.13
 tags:
  - 前端
- - 工具
+ - 构建工具
 categories: 
  - Front-End-Basics
 ---
