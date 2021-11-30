@@ -2,7 +2,7 @@ module.exports = {
   title: "ZephyrAndMoon",
   description: "",
   dest: "public",
-  base: '/',// 设置站点根路径
+  base: "/", // 设置站点根路径
   head: [
     [
       "link",
@@ -54,12 +54,12 @@ module.exports = {
       },
       {
         text: "Contact",
-        icon: "reco-message",
+        icon: "zephyr-message",
         items: [
           {
             text: "GitHub",
-            link: "https://github.com/recoluan",
-            icon: "reco-github",
+            link: "https://github.com/ZephyrAndMoon",
+            icon: "zephyr-github",
           },
         ],
       },
@@ -101,7 +101,7 @@ module.exports = {
     author: "Zephyr",
     authorAvatar: "/avatar.png",
     record: "xxxx",
-    startYear: "2017",
+    startYear: "2021",
   },
   markdown: {
     lineNumbers: true,
@@ -116,7 +116,6 @@ module.exports = {
           position: "fixed",
           right: "40px",
           bottom: "0px",
-          opacity: "0.9",
           zIndex: 99999,
         },
       },

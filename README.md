@@ -2,13 +2,12 @@
 home: true
 heroText: null
 tagline: Hi there, I'm Zephyr!
-bgImage: '/bg-4.png'
 heroImage: /avatar.png
 heroImageStyle: {
-  maxHeight: '200px',
   display: block,
-  margin: '6rem auto 1.5rem',
+  maxHeight: '200px',
   borderRadius: '50%',
+  margin: '6rem auto 1.5rem',
   boxShadow: '0 5px 18px rgba(0,0,0,0.2)'
 }
 isShowTitleInHome: false
