@@ -1,5 +1,5 @@
 module.exports = {
-  title: "ZephyrAndMoon",
+  title: "风走了以后",
   description: "",
   dest: "public",
   base: "/", // 设置站点根路径
