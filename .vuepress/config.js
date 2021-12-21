@@ -1,7 +1,9 @@
+const path = require("path");
+const basePath = path.resolve(__dirname, "./");
 module.exports = {
   title: "风走了以后",
   description: "",
-  dest: "public",
+  dest: "zephyr-blog",
   base: "/", // 设置站点根路径
   head: [
     [
@@ -100,8 +102,12 @@ module.exports = {
     lastUpdated: "Last Updated",
     author: "Zephyr",
     authorAvatar: "/avatar.png",
-    record: "xxxx",
+    record: "闽ICP备2021019076号",
+    cyberSecurityRecord: "闽公网安备 35011102350771号",
+    cyberSecurityLink:
+      "http://www.beian.gov.cn/portal/index.do?spm=a2c4g.11186623.0.0.15424f58vVcp9m&file=index.do",
     startYear: "2021",
+    recordLink: "http://beian.miit.gov.cn/",
   },
   markdown: {
     lineNumbers: true,
