@@ -6,7 +6,7 @@ tags:
   - 前端
   - HTTP
 categories:
-  - Front-End-Basics
+  - Other
 ---
 
 

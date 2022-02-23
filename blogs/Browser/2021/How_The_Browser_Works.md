@@ -6,6 +6,7 @@ tags:
   - 前端
   - 浏览器
 categories:
+  - Browser
   - Front-End-Basics
 ---
 

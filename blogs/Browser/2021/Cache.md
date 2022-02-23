@@ -7,7 +7,8 @@ tags:
  - 浏览器
  - HTTP
 categories: 
- - Front-End-Basics
+  - Browser
+  - Front-End-Basics
 ---
 
 ## 概括

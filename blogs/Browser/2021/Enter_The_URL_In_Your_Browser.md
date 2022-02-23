@@ -6,7 +6,8 @@ tags:
  - 基础
  - 浏览器
 categories: 
- - Front-End-Basics
+  - Browser
+  - Front-End-Basics
 ---
 
 ## 简要流程
