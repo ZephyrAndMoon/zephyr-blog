@@ -31,7 +31,7 @@ module.exports = {
   ],
   theme: "reco",
   themeConfig: {
-    subSidebar: "auto",
+    // subSidebar: "auto",
     codeTheme: "tomorrow",
     nav: [
       {
@@ -44,13 +44,14 @@ module.exports = {
         link: "/timeline/",
         icon: "reco-date",
       },
+
       {
         text: "Docs",
         icon: "reco-message",
         items: [
           {
-            text: "PersonalEssay",
-            link: "/docs/PersonalEssay/",
+            text: "浏览器工作原理与实践",
+            link: "/docs/HowBrowsersWorkAndPractice/",
           },
         ],
       },
@@ -67,7 +68,88 @@ module.exports = {
       },
     ],
     sidebar: {
-      "/docs/PersonalEssay/": [""],
+      "/docs/HowBrowsersWorkAndPractice/": [
+        {
+          title: "宏观视角上的浏览器",
+          collapsable: true,
+          children: [
+            "lesson01",
+            "lesson02",
+            "lesson03",
+            "lesson04",
+            "lesson05",
+            "lesson06",
+          ],
+        },
+        {
+          title: "浏览器中JavaScript的执行机制",
+          collapsable: true,
+          children: [
+            "lesson07",
+            "lesson08",
+            "lesson09",
+            "lesson10",
+            "lesson11",
+          ],
+        },
+        {
+          title: "V8工作原理",
+          collapsable: true,
+          children: ["lesson12", "lesson13", "lesson14"],
+        },
+        {
+          title: "浏览器中的页面循环系统",
+          collapsable: true,
+          children: [
+            "lesson15",
+            "lesson16",
+            "lesson17",
+            "lesson18",
+            "lesson19",
+            "lesson20",
+          ],
+        },
+        {
+          title: "浏览器中的页面",
+          collapsable: true,
+          children: [
+            "lesson21",
+            "lesson22",
+            "lesson23",
+            "lesson24",
+            "lesson25",
+            "lesson26",
+            "lesson27",
+            "lesson28",
+          ],
+        },
+        {
+          title: "浏览器中的网络",
+          collapsable: true,
+          children: [
+            "lesson29",
+            "lesson30",
+            "lesson31",
+            "lesson32",
+            "lesson33",
+            "lesson34",
+            "lesson35",
+            "lesson36",
+          ],
+        },
+        // {
+        //   title: "Vue32.0",
+        //   collapsable: false,
+        //   children: [
+        //     "lesson01",
+        //     "lesson02",
+        //     "lesson03",
+        //     "lesson04",
+        //     "lesson05",
+        //     "lesson06",
+        //   ],
+        // },
+      ],
     },
     type: "blog",
     blogConfig: {
@@ -85,15 +167,13 @@ module.exports = {
         title: "风走了以后",
         desc: "This is my Weibo.",
         link: "https://weibo.com/u/3011512391",
-        logo:
-          "https://markdowncun.oss-cn-beijing.aliyuncs.com/20210411003825.png",
+        logo: "https://markdowncun.oss-cn-beijing.aliyuncs.com/20210411003825.png",
       },
       {
         title: "Zephyr's github",
         desc: "This is my github.",
         link: "https://github.com/ZephyrAndMoon",
-        logo:
-          "https://markdowncun.oss-cn-beijing.aliyuncs.com/20210411003652.png",
+        logo: "https://markdowncun.oss-cn-beijing.aliyuncs.com/20210411003652.png",
       },
     ],
     logo: "/logo.png",
