@@ -1,7 +1,6 @@
 ---
 title: 调用栈：为什么JavaScript代码会出现栈溢出
-date: 2022-03-02
-sticky: 3
+date: 2022-01-01
 ---
 
 # 调用栈：为什么JavaScript代码会出现栈溢出

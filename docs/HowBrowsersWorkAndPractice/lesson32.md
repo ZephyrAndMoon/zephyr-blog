@@ -1,7 +1,6 @@
 ---
 title: 同源策略：为什么XMLHttpRequst不能跨域请求资源
-date: 2022-03-02
-sticky: 3
+date: 2022-01-01
 ---
 
 

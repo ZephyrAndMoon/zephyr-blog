@@ -1,7 +1,6 @@
 ---
 title: 使用Promise告别回调函数
-date: 2022-03-02
-sticky: 3
+date: 2022-01-01
 ---
 
 

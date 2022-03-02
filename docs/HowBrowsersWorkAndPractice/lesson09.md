@@ -1,7 +1,6 @@
 ---
 title: 块级作用域：var缺陷以及为什么要引入let和const
-date: 2022-03-02
-sticky: 3
+date: 2022-01-01
 ---
 
 # 块级作用域：var缺陷以及为什么要引入let和const

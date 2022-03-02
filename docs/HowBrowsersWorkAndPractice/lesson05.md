@@ -1,7 +1,6 @@
 ---
 title: 渲染流程（上）：HTML、CSS和JavaScript是如何变成页面的
-date: 2022-03-02
-sticky: 3
+date: 2022-01-01
 ---
 
 # 渲染流程（上）：HTML、CSS和JavaScript是如何变成页面的

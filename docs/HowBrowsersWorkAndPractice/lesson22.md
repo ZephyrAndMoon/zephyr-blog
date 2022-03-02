@@ -1,7 +1,6 @@
 ---
 title: DOM树：JavaScript是如何影响DOM树构建的
-date: 2022-03-02
-sticky: 3
+date: 2022-01-01
 ---
 
 

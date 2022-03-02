@@ -1,7 +1,6 @@
 ---
 title: 跨站脚本攻击XSS：为什么cookie中有httpOnly属性
-date: 2022-03-02
-sticky: 3
+date: 2022-01-01
 ---
 
 

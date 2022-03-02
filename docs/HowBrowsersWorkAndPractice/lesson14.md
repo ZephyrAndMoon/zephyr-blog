@@ -1,7 +1,6 @@
 ---
 title: 编译器和解析器：V8如何执行一段JavaScript代码的
-date: 2022-03-02
-sticky: 3
+date: 2022-01-01
 ---
 
 

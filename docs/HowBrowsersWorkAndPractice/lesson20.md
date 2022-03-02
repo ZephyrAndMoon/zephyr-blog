@@ -1,7 +1,6 @@
 ---
 title: async await 使用同步方式写异步代码
-date: 2022-03-02
-sticky: 3
+date: 2022-01-01
 ---
 
 

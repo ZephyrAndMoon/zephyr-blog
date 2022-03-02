@@ -1,7 +1,6 @@
 ---
 title: Webapi：XMLHttpRequest是怎么实现的
-date: 2022-03-02
-sticky: 3
+date: 2022-01-01
 ---
 
 

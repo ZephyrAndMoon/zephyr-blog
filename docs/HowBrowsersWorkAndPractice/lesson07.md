@@ -1,7 +1,6 @@
 ---
 title: 变量提升：JavaScript代码是按顺序执行的吗
-date: 2022-03-02
-sticky: 3
+date: 2022-01-01
 ---
 
 # 变量提升：JavaScript代码是按顺序执行的吗
