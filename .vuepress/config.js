@@ -31,7 +31,7 @@ module.exports = {
   ],
   theme: "reco",
   themeConfig: {
-    // subSidebar: "auto",
+    subSidebar: "auto",
     codeTheme: "tomorrow",
     nav: [
       {
